@@ -51,7 +51,7 @@ nav {
   flex-shrink: 0;
 }
 .nav-logo span { color: var(--sage); }
-.nav-links { display: flex; gap: 28px; list-style: none; align-items: center; }
+.nav-links { display: flex; gap: 22px; list-style: none; align-items: center; }
 .nav-links a {
   font-size: 0.8125rem; font-weight: 400; letter-spacing: 0.04em;
   color: var(--ink-mid); text-decoration: none; transition: color 0.2s;
@@ -294,6 +294,133 @@ h2.serif em { font-style: italic; }
 .tech-card-name { font-family: 'Playfair Display', serif; font-size: 1.0625rem; font-weight: 700; color: var(--ink); margin-bottom: 7px; }
 .tech-card-desc { font-size: 0.875rem; color: var(--ink-mid); font-weight: 300; line-height: 1.7; }
 
+/* --- GALLERY --- */
+.gallery { background: var(--white); padding-bottom: 0; }
+.gallery-head {
+  display: grid; grid-template-columns: 1fr 0.85fr;
+  gap: 56px; align-items: end; margin-bottom: 34px;
+}
+.gallery-shell {
+  position: relative;
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--ink);
+  min-height: 430px;
+}
+.gallery-track {
+  position: relative;
+  min-height: 430px;
+}
+.gallery-slide {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.55s ease, visibility 0.55s ease;
+}
+.gallery-slide.active {
+  opacity: 1;
+  visibility: visible;
+  z-index: 1;
+}
+.gallery-image {
+  position: relative;
+  min-height: 430px;
+  background: linear-gradient(135deg, rgba(92,122,107,0.28), rgba(196,113,74,0.16)), var(--sage-pale);
+}
+.gallery-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.gallery-image img + .gallery-fallback { display: none; }
+.gallery-fallback {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem; font-weight: 700; color: var(--sage);
+  letter-spacing: 0.02em;
+}
+.gallery-copy {
+  padding: 42px 34px 88px;
+  background: var(--ink);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.gallery-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--sage-light);
+  margin-bottom: 12px;
+}
+.gallery-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.65rem;
+  font-weight: 700;
+  line-height: 1.18;
+  margin-bottom: 12px;
+}
+.gallery-text {
+  font-size: 0.9rem;
+  line-height: 1.75;
+  font-weight: 300;
+  color: rgba(255,255,255,0.68);
+}
+.gallery-controls {
+  position: absolute;
+  right: 24px;
+  bottom: 24px;
+  z-index: 5;
+  display: flex;
+  gap: 8px;
+}
+.gallery-controls button {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.24);
+  background: rgba(255,255,255,0.08);
+  color: white;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.2s, border-color 0.2s;
+}
+.gallery-controls button:hover {
+  background: rgba(255,255,255,0.18);
+  border-color: rgba(255,255,255,0.52);
+}
+.gallery-dots {
+  position: absolute;
+  left: 24px;
+  bottom: 30px;
+  z-index: 5;
+  display: flex;
+  gap: 8px;
+}
+.gallery-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 0;
+  background: rgba(255,255,255,0.28);
+  cursor: pointer;
+}
+.gallery-dot.active { background: white; }
+.gallery + .tech { padding-top: 72px; }
+
 /* ─── TEAM ─── */
 .team { background: var(--white); }
 .team-grid {
@@ -482,6 +609,11 @@ footer { background: var(--ink); padding: 52px 48px 28px; }
   .service-tag { display: none; }
 
   .tech-grid { grid-template-columns: 1fr 1fr; }
+  .gallery-head { grid-template-columns: 1fr; gap: 18px; }
+  .gallery-shell, .gallery-track { min-height: 620px; }
+  .gallery-slide { grid-template-columns: 1fr; }
+  .gallery-image { min-height: 360px; }
+  .gallery-copy { min-height: 260px; padding: 34px 28px 82px; }
 
   .team-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
 
@@ -522,6 +654,14 @@ footer { background: var(--ink); padding: 52px 48px 28px; }
   .service-name { font-size: 1rem; }
 
   .tech-grid { grid-template-columns: 1fr; }
+  .gallery { padding-top: 48px; }
+  .gallery-head { margin-bottom: 26px; }
+  .gallery-shell, .gallery-track { min-height: 560px; }
+  .gallery-image { min-height: 300px; }
+  .gallery-copy { min-height: 260px; padding: 28px 22px 78px; }
+  .gallery-title { font-size: 1.35rem; }
+  .gallery-controls { right: 16px; bottom: 16px; }
+  .gallery-dots { left: 18px; bottom: 32px; }
 
   .team-grid { grid-template-columns: 1fr; gap: 14px; }
 
@@ -547,6 +687,7 @@ footer { background: var(--ink); padding: 52px 48px 28px; }
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#services">Treatments</a></li>
+    <li><a href="#gallery">Gallery</a></li>
     <li><a href="#team">Our Doctors</a></li>
     <li><a href="#reviews">Reviews</a></li>
     <li><a href="#location">Visit Us</a></li>
@@ -561,6 +702,7 @@ footer { background: var(--ink); padding: 52px 48px 28px; }
 <div class="mobile-menu" id="mobileMenu">
   <a href="#about" onclick="document.getElementById('mobileMenu').classList.remove('open')">About</a>
   <a href="#services" onclick="document.getElementById('mobileMenu').classList.remove('open')">Treatments</a>
+  <a href="#gallery" onclick="document.getElementById('mobileMenu').classList.remove('open')">Gallery</a>
   <a href="#team" onclick="document.getElementById('mobileMenu').classList.remove('open')">Our Doctors</a>
   <a href="#reviews" onclick="document.getElementById('mobileMenu').classList.remove('open')">Reviews</a>
   <a href="#location" onclick="document.getElementById('mobileMenu').classList.remove('open')">Visit Us</a>
@@ -668,6 +810,110 @@ footer { background: var(--ink); padding: 52px 48px 28px; }
         <div class="svc-icon">✨</div>
         <div><div class="service-name">Cosmetic Dentistry</div><div class="service-desc">Whitening, tooth jewellery, and aesthetic treatments. Tooth jewellery placed here 12 years ago still shines — that's the standard the cosmetic work is held to.</div></div>
         <div class="service-tag">Also for Kids</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY SLIDESHOW -->
+<section class="section gallery" id="gallery">
+  <div class="section-inner">
+    <div class="gallery-head">
+      <div>
+        <p class="eyebrow">Clinic Gallery</p>
+        <h2 class="serif">A quick look inside<br>the clinic before<br><em>the equipment.</em></h2>
+        <div class="rule"></div>
+      </div>
+      <p class="body-text">A moving photo section for staff, machines, and clinic spaces. Replace the placeholder image files with real clinic photos and this slideshow becomes a strong trust-builder for new patients.</p>
+    </div>
+
+    <div class="gallery-shell" data-gallery>
+      <div class="gallery-track">
+        <article class="gallery-slide active" aria-hidden="false">
+          <div class="gallery-image">
+            <img src="assets/gallery/clinic-team.webp" alt="Brite Smile Dental doctors and staff in Jammu" loading="lazy" onerror="this.remove()">
+            <div class="gallery-fallback">Staff & Doctors Photo</div>
+          </div>
+          <div class="gallery-copy">
+            <div class="gallery-label">Staff</div>
+            <div class="gallery-title">The team patients meet first.</div>
+            <p class="gallery-text">Show the doctors, assistants, and front desk staff so visitors feel familiar with the clinic before they arrive.</p>
+          </div>
+        </article>
+
+        <article class="gallery-slide" aria-hidden="true">
+          <div class="gallery-image">
+            <img src="assets/gallery/reception.webp" alt="Reception area at Brite Smile Dental Clinic Jammu" loading="lazy" onerror="this.remove()">
+            <div class="gallery-fallback">Reception Area</div>
+          </div>
+          <div class="gallery-copy">
+            <div class="gallery-label">Clinic Space</div>
+            <div class="gallery-title">A clean, calm place to wait.</div>
+            <p class="gallery-text">Reception and waiting-area photos help patients understand the environment before booking.</p>
+          </div>
+        </article>
+
+        <article class="gallery-slide" aria-hidden="true">
+          <div class="gallery-image">
+            <img src="assets/gallery/opg-machine.webp" alt="In-house OPG machine at Brite Smile Dental Clinic Jammu" loading="lazy" onerror="this.remove()">
+            <div class="gallery-fallback">OPG Machine</div>
+          </div>
+          <div class="gallery-copy">
+            <div class="gallery-label">Equipment</div>
+            <div class="gallery-title">In-house OPG for faster diagnosis.</div>
+            <p class="gallery-text">Show the panoramic X-ray setup clearly. It supports the claim that diagnosis happens inside the clinic.</p>
+          </div>
+        </article>
+
+        <article class="gallery-slide" aria-hidden="true">
+          <div class="gallery-image">
+            <img src="assets/gallery/intraoral-scanner.webp" alt="Digital intraoral scanner used for dental treatment planning" loading="lazy" onerror="this.remove()">
+            <div class="gallery-fallback">Intraoral Scanner</div>
+          </div>
+          <div class="gallery-copy">
+            <div class="gallery-label">Digital Dentistry</div>
+            <div class="gallery-title">Scanning instead of old-style impressions.</div>
+            <p class="gallery-text">A scanner photo makes the modern-care message much more believable than text alone.</p>
+          </div>
+        </article>
+
+        <article class="gallery-slide" aria-hidden="true">
+          <div class="gallery-image">
+            <img src="assets/gallery/dental-laser.webp" alt="Dental laser equipment at Brite Smile Dental Clinic Jammu" loading="lazy" onerror="this.remove()">
+            <div class="gallery-fallback">Dental Laser</div>
+          </div>
+          <div class="gallery-copy">
+            <div class="gallery-label">Laser</div>
+            <div class="gallery-title">Laser dentistry setup.</div>
+            <p class="gallery-text">Use a clear machine photo here to make the technology section feel tangible and premium.</p>
+          </div>
+        </article>
+
+        <article class="gallery-slide" aria-hidden="true">
+          <div class="gallery-image">
+            <img src="assets/gallery/treatment-room.webp" alt="Dental treatment room at Brite Smile Dental Clinic Jammu" loading="lazy" onerror="this.remove()">
+            <div class="gallery-fallback">Treatment Room</div>
+          </div>
+          <div class="gallery-copy">
+            <div class="gallery-label">Treatment Room</div>
+            <div class="gallery-title">Where the treatment actually happens.</div>
+            <p class="gallery-text">A bright room photo helps patients see the cleanliness, chair setup, and calm treatment environment.</p>
+          </div>
+        </article>
+      </div>
+
+      <div class="gallery-dots" aria-label="Gallery slides">
+        <button class="gallery-dot active" type="button" aria-label="Show staff slide"></button>
+        <button class="gallery-dot" type="button" aria-label="Show reception slide"></button>
+        <button class="gallery-dot" type="button" aria-label="Show OPG slide"></button>
+        <button class="gallery-dot" type="button" aria-label="Show scanner slide"></button>
+        <button class="gallery-dot" type="button" aria-label="Show laser slide"></button>
+        <button class="gallery-dot" type="button" aria-label="Show treatment room slide"></button>
+      </div>
+
+      <div class="gallery-controls">
+        <button type="button" data-gallery-prev aria-label="Previous gallery slide">&lt;</button>
+        <button type="button" data-gallery-next aria-label="Next gallery slide">&gt;</button>
       </div>
     </div>
   </div>
@@ -812,12 +1058,6 @@ footer { background: var(--ink); padding: 52px 48px 28px; }
           <div class="map-box-sub">Talab Tillo Rd, Bharat Nagar, Jammu</div>
         </div>
       </a>
-      <script>
-        document.getElementById('clinicPhoto').onerror = function() {
-          this.style.display = 'none';
-          document.getElementById('clinicMapBox').style.background = 'linear-gradient(160deg, #3d5c4e 0%, #2B2B2B 100%)';
-        };
-      </script>
     </div>
   </div>
 </section>
@@ -854,6 +1094,7 @@ footer { background: var(--ink); padding: 52px 48px 28px; }
       <h4>Info</h4>
       <ul>
         <li><a href="#about">About the Clinic</a></li>
+        <li><a href="#gallery">Clinic Gallery</a></li>
         <li><a href="#team">Our Doctors</a></li>
         <li><a href="#reviews">Patient Reviews</a></li>
         <li><a href="#location">Talab Tillo</a></li>
@@ -867,6 +1108,82 @@ footer { background: var(--ink); padding: 52px 48px 28px; }
     <span>Appointments: <a href="tel:+919086004222" style="color:rgba(255,255,255,0.5);text-decoration:none;">+91 90860 04222</a></span>
   </div>
 </footer>
+
+<script>
+document.getElementById('clinicPhoto').onerror = function() {
+  this.style.display = 'none';
+  document.getElementById('clinicMapBox').style.background = 'linear-gradient(160deg, #3d5c4e 0%, #2B2B2B 100%)';
+};
+
+(function () {
+  var gallery = document.querySelector('[data-gallery]');
+  if (!gallery) return;
+
+  var slides = Array.prototype.slice.call(gallery.querySelectorAll('.gallery-slide'));
+  var dots = Array.prototype.slice.call(gallery.querySelectorAll('.gallery-dot'));
+  var prev = gallery.querySelector('[data-gallery-prev]');
+  var next = gallery.querySelector('[data-gallery-next]');
+  var current = 0;
+  var timer;
+
+  function showSlide(index) {
+    current = (index + slides.length) % slides.length;
+
+    slides.forEach(function (slide, slideIndex) {
+      var isActive = slideIndex === current;
+      slide.classList.toggle('active', isActive);
+      slide.setAttribute('aria-hidden', isActive ? 'false' : 'true');
+    });
+
+    dots.forEach(function (dot, dotIndex) {
+      var isActive = dotIndex === current;
+      dot.classList.toggle('active', isActive);
+      if (isActive) {
+        dot.setAttribute('aria-current', 'true');
+      } else {
+        dot.removeAttribute('aria-current');
+      }
+    });
+  }
+
+  function startAutoPlay() {
+    window.clearInterval(timer);
+    timer = window.setInterval(function () {
+      showSlide(current + 1);
+    }, 4200);
+  }
+
+  if (prev) {
+    prev.addEventListener('click', function () {
+      showSlide(current - 1);
+      startAutoPlay();
+    });
+  }
+
+  if (next) {
+    next.addEventListener('click', function () {
+      showSlide(current + 1);
+      startAutoPlay();
+    });
+  }
+
+  dots.forEach(function (dot, index) {
+    dot.addEventListener('click', function () {
+      showSlide(index);
+      startAutoPlay();
+    });
+  });
+
+  gallery.addEventListener('mouseenter', function () {
+    window.clearInterval(timer);
+  });
+
+  gallery.addEventListener('mouseleave', startAutoPlay);
+
+  showSlide(0);
+  startAutoPlay();
+})();
+</script>
 
 </body>
 </html>
