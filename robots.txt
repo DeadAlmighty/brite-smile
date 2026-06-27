@@ -1,0 +1,9 @@
+# Brite Smile Dental - Robots.txt
+# https://britesmiledental.in/
+
+User-agent: *
+Allow: /
+Disallow:
+
+# Sitemap location
+Sitemap: https://britesmiledental.in/sitemap.xml
